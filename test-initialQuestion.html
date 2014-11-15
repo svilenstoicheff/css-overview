@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>Tests - compound selector</title>
+<style>
+body {font: normal 17px Arial, Helvetica, sans-serif;}
+body#content-page div.content-container div.content-module p.text-block {font-size: 0.9em; color:#333;}
+
+.text-block {font-size: 0.9em; color:#333333;}
+
+</style>
+
+</head>
+
+<body id="content-page">
+	<div class="content-container">
+    	<div class="content-module">
+        	<p class="text-block">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+    </div>
+
+
+
+<p class="text-block">The quick brown fox jumps over the lazy dog again.</p>
+
+</body>
+</html>

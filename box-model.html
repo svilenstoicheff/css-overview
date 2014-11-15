@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<title>Box model</title>
+<style>
+body {font-family:Verdana, Geneva, sans-serif; font-size:85%;}
+div {border: 1px solid #333; margin: 0 auto; madding:0; position:relative; text-transform:uppercase; font-weight: bold; }
+#margin {width:20em; height:20em; background:#0CF;}
+#content:before {content:"content"; position:absolute; top:1.25em; left:0.65em;}
+#margin:before {content: "margin"; position:absolute; top:0.65em; left:0.65em;}
+#border:before {content: "border"; position:absolute; left:0.65em; top:-1px;}
+#padding:before {content:"padding"; position:absolute; top:0.65em; left:0.65em;}
+#border {margin-top:2em; width:16em; height:16em; background:#000; color:#fff; }
+#padding {height:14em; width:14em; margin-top:1em; background:yellow; color:#000;}
+#content {height:10em; width:10em; margin-top:2em; background:green; color:#fff;}
+#content span:first-child {display:block; position:absolute; border: 1px solid #666; border-width:0 1px 1px 1px; width:100%; height:100%; top:1.25em; left:-1px;}
+#content span:first-child:after {content:"width (default)"; position:absolute; bottom:2px; left:10px;font-size:0.7em; font-weight:normal; color:#333;}
+#content span:last-child {display:block; position:absolute; border: 1px solid #666; border-width: 1px 1px 1px 0; width:100%; height:100%; left:1.25em; top:-1px;}
+#content span:last-child:before {content:"height (default)"; position:absolute; top:5em; right:-4.5em; font-size:0.7em; font-weight:normal; color:#333; -moz-transform:rotate(-90deg); -webkit-transform:rotate(-90deg); -ms-transform:rotate(-90deg);}
+
+#margin + p {width:20em; margin:1em auto;}
+</style>
+
+</head>
+
+<body>
+
+<div id="margin">
+    <div id="border">
+        <div id="padding">
+            <div id="content"><span></span><span></span></div>
+        </div>
+    </div>
+</div>
+
+
+<p>This is the box model as defined by CSS2.1. CSS3 extends the box model by defining the <em>box-sizing</em> property. Its possible values are <code>content-box</code> (default), <code>border-box</code> and <code>padding-box. </code></p>
+</body>
+</html>

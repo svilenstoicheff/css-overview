@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Resizing</title>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+ 
+<style>
+	html, body {height:100%;}
+	article {overflow:auto; min-width:975px; background:#f1f1f1; border:1px solid #333; margin:0.5%;}
+	section {overflow:hidden; margin:0.5%;  background:#999; border:1px dashed #666; }
+	section div {background:#000; border:1px solid #fff; margin:0.2em;  color:yellow; padding:1em; 
+	position:relative; float:left; min-width:14%; max-width:19%;}
+    section div p:first-child, section div img {margin-bottom:7em;}
+    section div p a{display:block;}
+    section div img {width:100%; display:block;}
+    .links {position:absolute; bottom:0;}
+</style>
+
+
+</head>
+<body>
+	<article>
+		<section>
+			<div><img src="http://s7.sears.com/is/image/Sears/s_Computers_Collage_042413" width="100%" height="350"/>
+				<p class="links"><strong>Heading</strong><a href="">Link</a><a href="">Link</a><a href="">Link</a><a href="">Link</a></p>
+			</div>
+			<div><p>The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+				The quick brown fox jumps over the lazy dog.</p>
+				<p class="links"><strong>Heading</strong><a href="">Link</a><a href="">Link</a><a href="">Link</a><a href="">Link</a></p>
+			</div>
+			<div><p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+				The quick brown fox jumps over the lazy dog. 
+				The quick brown fox jumps over the lazy dog. 
+				The quick brown fox jumps over the lazy dog. 
+				 </p>
+				<p class="links"><strong>Heading</strong><a href="">Link</a><a href="">Link</a><a href="">Link</a><a href="">Link</a></p>
+			</div>
+			<div><img src="http://s7.sears.com/is/image/Sears/s_VideoGames_Collage_042413" />
+				<p class="links"><strong>Heading</strong><a href="">Link</a><a href="">Link</a><a href="">Link</a><a href="">Link</a></p>
+			</div>
+		</section>
+		<section>
+			<div></div>
+			<div>The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dog.
+				The quick brown fox jumps over the lazy dog.
+				The quick brown fox jumps over the lazy dog.
+				The quick brown fox jumps over the lazy dog.</div>
+			<div></div>
+			<div></div>
+		</section>
+		<section>
+			<div></div>
+			<div></div>
+			<div>The quick brown fox jumps over the lazy dog.
+				The quick brown fox jumps over the lazy dog.T
+				he quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+				The quick brown fox jumps over the lazy dog.</div>
+			<div></div>
+			<div></div>
+		</section>
+		<section>
+			<div></div>
+			<div>The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.T
+				he quick brown fox jumps over the lazy dog.</div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div>The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.T
+				he quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+				The quick brown fox jumps over the lazy dog.</div>
+		</section>
+	</article>
+<script>
+ $(document).ready(function(){
+	 function alignHeights(){
+		 var newHeight, imageHeight = $('article section:first-child > div > img').height();
+	 $('article section:first-child > div > img').each(function(){
+	 	if($(this).height() > imageHeight){
+	 		imageHeight = $(this).height();
+	 	}
+	 });
+	 $('article section:first-child > div').height(imageHeight + 110);
+	 };
+	alignHeights();
+ 	$(window).on('resize', function(){
+  		alignHeights();
+ 	});
+ });
+ </script>
+</body>
+</html>

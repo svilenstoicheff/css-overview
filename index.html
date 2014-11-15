@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>CSS Overview</title>
+<link rel="stylesheet" href="../themes/ss-jqm.min.css" />
+<link rel="stylesheet" href="../themes/jquery.mobile.structure-1.1.0.min.css" />
+<style>
+.ui-body-c header + a.ui-link {display:block; width:99%; text-align:right;font-weight:normal; margin:0.5em 0.5em 0 0;}
+.codeview {display:none; background:#fff; padding:1em; border-radius:0.5em; border:1px solid #999;}
+.code-container {background:#FFFFA6; width:auto; padding:1em; border-radius:0.5em; border:1px solid #999;  margin: 0.5em 0 2em;}
+.code-container code {font-size:larger; display:block; }
+footer.ui-footer {position:absolute; bottom:0; width:100%; padding:0.3em;}
+.ui-content {margin-bottom: 1em; padding-bottom:2em; overflow:visible;}
+
+.structure-label label, .superstructure-label label {display:none;}
+	@media screen and (min-width:480px){
+	.structure-label {background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1); margin-top: -1em; padding: 1em 0.2em 0.2em; position:relative;}
+.superstructure-label{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1); margin-bottom: -1em; padding: 0.2em 0.2em 1em; position:relative;}
+.structure-label label {display:inline; position:absolute; top:-1.4em; left:0;  border:1px solid #ccc; border-bottom:none; width:98%;font-size:smaller; text-transform:uppercase; text-align:center; }
+.superstructure-label > label {display:inline; position:absolute; bottom:-1.4em; left:0;  border:1px solid #ccc; border-top:none; width:100%;font-size:smaller; text-transform:uppercase; text-align:center; }
+}
+
+p[lang|="bg"] {font-size:110%; font-style:italic;}
+html[lang|="en-us"] {font-size:100%; font-style:normal;}
+h5 {display:inline-block; padding:0.2em; background:#000; color:#fff; margin: 0.5em}
+table, td, th {border: 1px solid #333; border-collapse:collapse; padding:0.5em;}
+.css-three::after {background: none repeat scroll 0 0 red; color: #fff; content: "3"; margin-left: 1em; opacity: 1; padding: 0 0.3em; border-radius:0.7em; font-weight:normal;}
+p.note::before {content:"Note: "; font-weight:bold;} 
+</style>
+
+</head>
+
+<body>
+
+<div data-role="page" id="index">
+<header data-role="header"><h1>CSS Overview</h1></header>
+	
+	<div data-role="content">
+    	<ul data-role="listview" data-inset="true">
+        	<li><a href="#syntax">Syntax</a></li>
+            <li><a href="#selectors">Selectors</a></li>	
+            <li><a href="#cascade">Cascade</a></li>
+            <li><a href="#precedence">Precedence</a></li>
+            <li><a href="#text">Text Formatting</a></li>
+            <li><a href="#layout">Layout</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </div>
+</div>
+<div data-role="page" id="syntax">
+	<header data-role="header">
+    	<a href="../css-overview" data-role="button" data-theme="a">Home</a>
+    	<h2>CSS Syntax</h2></header>
+	<div data-role="content">
+    	<h3>Anatomy of a CSS rule</h3>
+       <div class="code-container"><code><span class="structure-label"><label>selector</label>p strong</span> <span class="superstructure-label"><label>declaration block</label>{<span class="structure-label"><label>declaration</label>color: red</span>; <span class="structure-label"><label>property</label>background</span>:<span class="structure-label"><label>value</label>yellow</span>;}</span></code></div>
+       <a href="#" class="view-rule" data-role="button" data-inline="true">View</a>
+       <div class="codeview"><p>This is a <strong style="color: red; background: yellow;">test</strong> paragraph.</p></div>
+       <p><strong>selector</strong> - p, strong</p>
+       <p><strong>declaration block</strong> - {color: red; background: yellow;}</p>
+       <p><strong>declaration</strong> - color: red</p>
+       <p><strong>property</strong> - color</p>
+       <p><strong>value</strong> - red</p>
+       
+       <h3>Grouping</h3>
+       <p>Selectors and declarations can be grouped in a single rule.</p>
+        <div>
+        <div class="code-container"><code>p, strong {color: red; background: yellow;}</code></div>
+         <a href="#" class="view-rule" data-role="button" data-inline="true">View</a>
+       <div class="codeview"><p style="color: red; background: yellow;">This is a <strong style="font-weight:bold;color: red; background: yellow;">test</strong> paragraph.</p></div>
+       </div>
+       <p class="note">A syntax error in one of the grouped selectors invalidates the whole rule.</p>
+    </div>
+    
+	<footer data-role="footer"><a href="../css-overview" data-role="button" data-theme="a">Home</a></footer>
+</div>
+
+<div data-role="page" id="selectors">
+	<header data-role="header">
+    	<a href="../css-overview" data-role="button" data-theme="a">Home</a>
+        <h2>CSS Selectors</h2>
+    </header>
+    <a href="http://www.w3.org/TR/2011/REC-css3-selectors-20110929/">W3C Recommendation</a> 
+	<div data-role="content">
+	    <div data-role="collapsible-set">
+            <div data-role="collapsible">
+                <h3>Element (Type)</h3>
+                 <p class="code-container">
+                 	<code>body {font-family: Arial, Helvetica, sans-serif; font-size:90%;}</code>
+                	<code>h1, h2 {background-color:gray; padding:0.5em;}</code></p>
+                    <p>Matches all instances of an element's name in the document.</p>
+            </div>
+            <div data-role="collapsible">
+                <h3>ID</h3>
+                <p class="code-container"><code>#content-block {width:80%; margin:auto;}</code></p>
+                <p class="note">
+                	<ul>
+                    	<li>IDs are unique</li>
+                        <li>Hyphenation is my preferred format for compound selector names. 
+                    </ul>
+                    </p>
+            </div>        
+            <div data-role="collapsible">
+                <h3>Class</h3>
+                <p class="code-container"><code>.thumbnail {width:210px; height:140px; border: 1px solid #000;}</code>
+                	<code>.error {color:red; background:#ffffa6; font-weight:normal;}</code>
+                    <code>p.error {font-weight:bold;}</code>
+                </p>
+                Chaining:
+                     <p class="code-container"><code>.fatal.error {font-weight:bold; text-decoration:blink;}</code></p>
+                     <p>Selects only those elements whose class attribute contains both words, regardless of order.</p>
+                     <p>E.g.: &lt;p class="fatal error">All FUBAR&lt;/p>, or &lt;p class="error fatal">All FUBAR&lt;/p></p>
+                      
+            </div>
+            <div data-role="collapsible">
+            	<h3>Descendant</h3>
+                <p class="code-container">
+                	<code>p em {font-weight:bold; color:red;}</code>
+                </p>
+                <p>Matches all instances of an element which is a descendant (child, grandchild, great-grandchild, etc.) of another element.</p>
+                <a href="#" class="view-rule" data-role="button" data-inline="true">Example</a>
+       				<div class="codeview"><p>This <em style="font-weight:bold; color:red;">is</em> a <em style="font-weight:bold; color:red;">test</em>.</p></div>
+            </div>
+            <div data-role="collapsible">
+            	<h3>Child</h3>
+                <p class="code-container">
+                	<code>h1 > em {font-weight:bold; color:red;}</code>
+                   </p>
+                   <p>Matches an element that is a direct child of another element.</p>
+                 <a href="#" class="view-rule" data-role="button" data-inline="true">Example</a>
+       				<div class="codeview">
+                    	<h1>This <em style="font-weight:bold; color:red;">is</em> a <em style="font-weight:bold; color:red;">test</em>.</h1>
+                    	<p>This <em>is</em> a <em>test</em>.</p>
+                    </div>   
+                    
+               
+            </div>
+            <div data-role="collapsible">
+            	<h3>Adjacent</h3>
+                <p class="code-container">
+                	<code>h1 + p {font-size:larger; border:1px solid #666; box-shadow: 2px 2px 2px #999;}</code>
+                </p>
+                <p>Matches an element which is the following adjacent sibling of another element. </p>
+            
+            <a href="#" class="view-rule" data-role="button" data-inline="true">Example</a>
+       		<div class="codeview">
+                    <h1>Lorem Ipsum</h1>
+            <p style="font-size:larger; border:1px solid #666; box-shadow: 2px 2px 2px #999; padding:1em;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam purus dolor, lacinia a rhoncus a, tincidunt vitae arcu.</p>
+            </div>
+            
+            
+            </div>
+            <div data-role="collapsible">
+            	<h3>Attribute</h3>
+                <ul>
+                	<li><strong>Simple</strong>
+                    <p>Matches an element that contains a certain attribute, regardless of the attribute's value. </p>
+                <p class="code-container">
+                	<code>
+                    input[type] {font-weight:bold;}<br>
+                    p[id] {background:#eee; border:1px solid #666;}
+                    </code>
+                </p>
+               </li>
+               <li><strong>Exact Value</strong>
+               <p>Selects an element on the precise and complete value of an attribute. </p>
+                <p class="code-container">
+                	<code>
+                    input[type="text"] {font-weight:bold; background:#eee;}<br>
+                    p[id="page-content"] {background:#eee; border:1px solid #666; box-shadow:5px 5px 5px #bbb;}
+                    </code>
+                </p>
+                    
+                </li>
+                <li><strong>Partial Value</strong>
+                <p class="code-container">
+                	<code>
+                    	p[class~="error"] {color:red; font-weight:bold;}<br>
+                    	a[title~="Recipe"] {background:#eee; font-weight:bold; color:maroon;}
+                    </code>
+                </p>
+                
+                </li>
+                <li><strong class="css-three">Beginning Substring Value</strong>
+                	<p>
+                    	<code>
+                        	li[id^="nav"] {padding:0.5em; border:1px solid #ccc; box-shadow:0.1em 0.1em 0.1em #999;}
+                        </code>
+                    </p>
+                
+                </li>
+                <li><strong class="css-three">Ending Substring Value</strong>
+                	<p class="code-container">
+                    	<code>
+                        	li[id$="-item"] {padding:0.5em; border:1px solid #ccc; box-shadow:0.1em 0.1em 0.1em #999;}
+                    	</code>
+                    </p>
+                </li>
+                <li><strong class="css-three">Arbitrary Substring Value</strong>
+                	<p class="code-container">
+                    	<code>
+                        	menu li[id*="nav"] {padding:0.5em; border:1px solid #ccc; box-shadow:0.1em 0.1em 0.1em #999;}
+                        </code>
+                    </p>
+                
+                </li>
+                <li><strong>Particular Attribute Selector(Language Selector)</strong>
+                <p class="code-container">
+                	<code>
+                    	html[lang|="en-us"] {font-size:100%; font-style:normal;}<br>
+                        p[lang|="bg"] {font-size:110%; font-style:italic;}<br>
+                        img[href|="chart"] {border:2px solid #000; box-shadow:.2em .2em .2em #999;}
+
+                    </code>
+                </p>
+                <p lang="bg">Това е проба.</p>
+                <p lang="en-us">This is a test.</p>
+                </li>
+                </ul>
+                
+               
+            </div>
+            <div data-role="collapsible">
+            	<h3>Pseudo-classes</h3>
+                <p>Pseudo-classes are categorized as structural, negation and interaction ones. </p>
+                <h4>Structural pseudo-classes</h4>
+                <h5 class="css-three">:empty</h5> - matches an element that has no child nodes or content nodes (&lt;p> &lt;/p> is not empty).
+                <p class="code-container">
+                	<code>
+                	p:empty {padding: 1em; background: red;} <br>
+                	li:empty {display: none;}
+					</code>
+                </p>
+                <h5>:first-child</h5> - matches an element that is the first child of another element. 
+                <p class="code-container">
+                	<code>li:first-child {border-radius:1 em 1em 0 0;}</code>
+                </p>
+                <h5 class="css-three">:first-of-type</h5> - matches an element that is the first child of its type of another element.
+                <p class="code-container">
+                	<code>p:first-of-type {font-size:larger; line-height:150%; box-shadow:.2em .2em .2em #999;}</code>
+                </p>
+                <h5>:lang</h5> - applies to any element with associated language-encoding information. Language information cannot be assigned via CSS, it must be contained within or otherwise associated with the document.
+                <p class="code-container">
+                	<code>
+                    	html:lang(en) {background:#fff;}<br>
+                        p:lang(bg) {background:#eee; border: 1px solid #666;}
+                    </code>
+                </p>
+                <h5 class="css-three">:last-child</h5>
+                <p class="code-container">
+                	<code>li:last-child {border-radius:1 em 1em 0 0;}</code>
+                </p>
+                <h5 class="css-three">:last-of-type</h5>
+                <p class="code-container">
+                	<code>body &gt; div:last-of-type {border-bottom:2px solid #999; margin-bottom:2em;}</code>
+                </p>
+                <h5 class="css-three">:nth-child()</h5>
+                Matches every nth child, with the pattern of selection defined by the formula <em>an+b</em>. There also two keywords allowed - <em>even</em> (2n) and <em>odd</em> (2n+1). 
+                <p class="code-container">
+                	<code>li:nth-child(3n+1) {font-weight:bold;}<br>
+                	    li:nth-child(4n-1) {font-weight:bold;} /*not the same as above*/<br>
+                	   tbody tr:nth-child(odd) {background:#ccc;}<br>
+                	</code>
+                </p>
+                <h5 class="css-three">:nth-last-child()</h5>
+                This, too, matches every nth child following the <em>an + b</em>, pattern, but counting backwards from the last child. 
+                The <em>even</em> and <em>odd</em> keywords are allowed here, too. 
+                
+                <p class="code-container">
+                	<code>
+                	    tbody tr:nth-last-child(odd) {background:#ccc;}<br>
+                	    li:nth-last-child(3n+1) {font-weight:bold;}
+                	</code>
+                </p>
+                <h5 class="css-three">:nth-of-type()</h5>
+                <p class="code-container">
+                    <code>body &gt; p:nth-of-type(3n+1) {border:1px solid black;}</code>
+                </p>
+                <h5 class="css-three">:nth-last-of-type()</h5>
+                <p class="code-container">
+                	<code>td:nth-last-of-type(even) {background-color:#fcc;}</code>
+                </p>
+                <h5 class="css-three">:only-child</h5> - matches any element that is the only child of its parent. 
+                <p class="code-container">
+                	<code>ol li:only-child {background:#ccc; font-weight:bold;}</code>
+                </p>
+                <h5 class="css-three">:only-of-type</h5> - matches an element that is the only child of its type of its parent. 
+                <p class="code-container">
+                	<code>article section:only-of-type {border-bottom:2px solid gray; margin-bottom:2em;}</code>
+                </p>
+                <h5 class="css-three">:root</h5> - matches the root element in the document. In HTML, the root is always the <em>html</em> element. 
+                In XML, however, the root can be named randomly - hence the need for a generic root-element selector. 
+                <p class="code-container">
+                	<code>:root {font:medium serif;}</code>
+                </p>
+                
+                <h4>Negation pseudo-class</h4>
+                <h5 class="css-three">:not(e)</h5> - matches every element that is not described by the simple selector <em>e</em>.
+                <p class="code-container">
+                	<code>ul *:not(li) {text-indent: 2em;}<br>
+                	    fieldset *:not([type="checkbox"]):not([type="radio"]) {margin:0 1em;}
+                	</code>
+                </p>
+                <strong>Notes:</strong>
+                <ul>
+                    <li>The "simple selector" restriction means that grouped and descendant selectors are not allowed within :not() expressions. </li>
+                    <li>The simple selector cannot be the negation pseudo-class. In other words, you cannot write :not(:not(p)). </li>
+                    <li>The negation pseudo-class can be chained with other pseudo-classes, as well as with instances of itself - see example above</li>
+                </ul>
+                <h4>Interaction pseudo-classes</h4>
+                 <h5>:active</h5>
+                 <p class="code-container">
+                	<code>
+                    	a:active {color:red;}<br>
+                    	*:active {background:yellow;}
+                    </code>
+                </p>
+                 <h5 class="css-three">:checked</h5>
+                 <p class="code-container">
+                	<code>input:checked {outline: 3px solid #ccc;}<br>
+                    input[type="radio"]:checked {box-shadow: 1px 1px 5px blue;}</code>
+                </p>
+                 <h5 class="css-three">:disabled</h5>
+                 <p class="code-container">
+                	<code>input:disabled {opacity:0.5;}</code>
+                </p>
+                 <h5 class="css-three">:enabled</h5>
+                 <p class="code-container">
+                	<code>input:enabled {opacity:1; background:#eee;}</code>
+                </p>
+                 <h5>:focus</h5>
+                 <p class="code-container">
+                	<code>a:focus {outline: 1px dotted red;}<br>
+                    	input:focus {background:yellow;}
+                    </code>
+                </p>
+                 <h5>:hover</h5>
+                 <p class="code-container">
+                	<code>a:hover {text-decoration:uderline;}<br>
+                    p:hover {background:yellow;}</code>
+                </p>
+                 <h5>:link</h5>
+                 <p class="code-container">
+                	<code>a:link {color:purple;}<br>
+                    *:link {text-decoration:none;}</code>
+                </p>
+                 <h5 class="css-three">:target</h5> - matches an element which is itself matched by the fragment identifier portion of the URL (...#targetname). 
+                 <p class="code-container">
+                	<code>:target {background: #ee0;}</code>
+                </p>
+                 <h5>:visited</h5>
+                <p class="code-container">
+                	<code>a:visited {color: #333;}<br>
+                    *:visited {color:gray;}</code>
+                </p>
+            </div>
+            <div data-role="collapsible">
+            	<h3>Pseudo-elements</h3>
+                <p>In CSS3, pseudo-elements are designated by double colons, to distinguish them from pseudo-classes. For historical reasons, browsers will support either syntax, but double colons are recommended.</p> 
+                <h5>::after</h5> - contains generated content placed after the element's content.
+                <p class="code-container">
+                	<code>.css-three::after {background: none repeat scroll 0 0 red; color: #fff; content: "3"; margin-left: 1em; opacity: 1; padding: 0 0.3em; border-radius:0.7em; font-weight:normal;}</code>
+                </p>
+                <h5>::before</h5> contains generated content placed before the element's content. 
+                <p class="code-container">
+                	<code>a[href]:before {content: "[LINK] ";}<br>
+                    p.note:before {content: "Note: "; font-weight:bold;}</code>
+                </p>
+                <h5>::first-letter</h5> - contains the first letter of an element. 
+                <p class="code-container">
+                	<code>h1::first-letter {font-size:larger;}<br>
+                    p::first-letter {text-decoration:underline;}</code>
+                </p>
+                <h5>::first-line</h5> - contains the first formatted line of an element, regardless of length. 
+                <p class="code-container">
+                	<code>p.lead::first-line {font-weight:bold;}</code>
+                </p>
+            <p class="note">The <em>::first-line</em> pseudo-element can be attached only to block-level elements. </p>
+            </div>
+            <div data-role="collapsible">
+            	<h3>Other CSS3 Selectors</h3>
+                <h4 class="css-three">General sibling selector</h4>
+                <p class="code-container">
+                	<code>h1 ~ menu {background:#333; color:#fff; padding:0.5em;}</code>
+                </p>
+            </div>
+    	</div>    	
+    </div>
+    <footer data-role="footer"><a href="../css-overview" data-role="button" data-theme="a">Home</a></footer>
+</div>
+
+<div data-role="page" id="cascade">
+	<header data-role="header">
+    <a href="../css-overview" data-role="button" data-theme="a">Home</a>
+    <h2>The Cascade</h2></header>
+	<div data-role="content">
+    	The cascade can be defined as the sequence of steps CSS takes to resolve conflicting rules. It's the mechanism by which the user agent decides which rule to honor, whenever mutiple rules apply to the same element.
+        <ol>
+	    <li><strong>Find all declarations that apply</strong> to the element and property in question, for the target media type. Declarations apply if the associated selector matches the element in question and the target medium matches the media list on all @media rules containing the declaration and on all links on the path through which the style sheet was reached.</li>
+    	<li><strong>Sort according to importance</strong> (normal or important) and <strong>origin</strong> (author, user, or user agent). In ascending order of precedence:
+        <ol type="i">
+            <li>user agent declarations</li>
+            <li>user normal declarations</li>
+            <li>author normal declarations</li>
+            <li>author important declarations</li>
+            <li>user important declarations</li>
+        </ol>
+        </li> 
+    	<li><strong>Sort</strong> rules with the same importance and origin <strong>by specificity</strong> of selector: more specific selectors will override more general ones. Pseudo-elements and pseudo-classes are counted as normal elements and classes, respectively.</li>
+    	<li>Finally, <strong>sort by order</strong> specified: if two declarations have the same weight, origin and specificity, the latter specified wins. Declarations in imported style sheets are considered to be before any declarations in the style sheet itself. </li>
+        </ol> 
+        <a href="http://www.w3.org/TR/CSS2/cascade.html#cascade" data-ajax="false">The Cascade (W3)</a>
+    </div>
+    <footer data-role="footer"><a href="../css-overview" data-role="button" data-theme="a">Home</a></footer>
+</div>
+
+<div data-role="page" id="precedence">
+	<header data-role="header">
+    <a href="../css-overview" data-role="button" data-theme="a">Home</a>
+    <h2>CSS Precedence</h2></header>
+	<div data-role="content">
+    	Precedence is another commonly used term for the algorythm CSS applies to resolve conflicting rules. Precedence is determined by the cascade and its key components - <em>specificity</em> and <em>inheritance</em>. 
+        <div data-role="collapsible">
+        <h3>Specificity calculations</h3>
+        <p>Specificity describes the weight of a selector based on the identifiers it contains. It is expressed as a comma-delimited group of four numbers. For each identifier in the selector, we increment the number in the respective position.</p>
+        <table>
+        	<thead>
+            <tr>
+            	<th>Selector type</th><th>Example</th><th>Specificity</th>
+            </tr>
+            </thead>
+            <tbody>
+            	<tr><td>Universal selector<br>Combinator</td><td>*<br>+</td><td>0,0,0,0</td></tr>
+            	<tr><td>Element identifier<br>
+                		Pseudo-element identifier</td>
+                        <td>div<br>::first-line</td>
+                        <td>0,0,0,1</td></tr>
+                <tr><td>Class identifier<br>
+                	Pseudo-class identifier<br>
+                    Attribute identifier</td>
+                    <td>.error<br>:hover<br>[type="radio"]</td>
+                    <td>0,0,1,0</td></tr>
+                <tr><td>ID identifier</td><td>#content</td><td>0,1,0,0</td></tr>
+               	<tr><td>Inline style attribute</td><td>style="color:red;"</td><td>1,0,0,0</td></tr>
+            </tbody>
+        </table>
+        <p>Specificity values are cumulative. If a selector contains two elements and three classes, its specificity would be 0,0,3,2. </p>
+        <p>Specificity values are sorted in right-to-left precedence. Thus a selector contianing 5 element identifiers (0,0,0,5) has a lower specificity than a selector containing just a single class (0,0,1,0).
+        </div>
+        
+        <div data-role="collapsible">
+        	<h3>Inheritance</h3>
+        	<p>In a document (XML, HTML), the elements form a treelike hierarchy, with the root element at the top of the tree and the rest of the elements spreading out below it. </p>
+        	<p>In an HTML document, the <em>html</em> element is the root, with the <em>head</em> and <em>body</em> descending from it. The rest of the document structure descends from those elements. 
+        	<p>CSS uses the document tree for the mechanism of inheritance - descendants inherit the style properties of their ancestors.</p>
+        	<p>Some properties are not inherited, such as padding, margin, border and background. 
+        	    See <a href="http://www.w3.org/TR/CSS/#properties" data-ajax="false">this chart</a> for a full list of inherited and non-inherited properties. </p>	
+        </div>
+    </div>
+    <footer data-role="footer"><a href="../css-overview" data-role="button" data-theme="a">Home</a></footer>
+</div>
+
+<div data-role="page" id="text">
+	<header data-role="header">
+    <a href="../css-overview" data-role="button" data-theme="a">Home</a>
+    <h2>Text Formatting</h2></header>
+	<div data-role="content">
+    	<div data-role="collapsible">
+    		<h3>Fonts</h3>
+    		<h4>Font Families</h4>
+    		<ul>
+    			<li><strong>serif</strong> - proportional font whose characters have serifs (decorations on the ends of strokes). E.g.: Times, Georgia, New Century Schoolbook.</li>
+    			<li><strong>sans-serif</strong> - proportional fonts with no serifs. E.g.: Arial, Helvetica, Verdana.</li>
+    			<li><strong>monospace</strong> - not proportional, emulate typewritten text. E.g. Courier, Courier New.</li>
+    			<li><strong>cursive</strong> - emulate human handwriting. E.g.: Comic Sans, Author.</li>
+    			<li><strong>fantasy</strong> - not defined by any single characteristic other than our inability to classify them in one of the other families. E.g.: Western, Woodblock, Klingon.</li>
+    		</ul>
+    		
+    		<h4>Font Properties</h4>
+    		<ul>
+    			<li><strong>font</strong></li>
+    			<li><strong>font-family</strong></li>
+    			<li><strong>font-size</strong></li>
+    			<li><strong>font-size-adjust</strong></li>
+    			<li><strong>font-style</strong></li>
+    			<li><strong>font-variant</strong></li>
+    			<li><strong>font-weight</strong></li>
+    		</ul>
+    	</div>
+    	<div data-role="collapsible">
+    		<h3>Text Properties</h3>
+    		<p>
+            	<ul>
+                	<li><strong>text-align</strong> - left | center | right | justify</li>
+                    <li><strong>text-decoration</strong> - none | underline | overline | line-through | blink</li>
+                    <li><strong>text-indent</strong> - &lt;length> | &lt;percentage></li>
+                    <li><strong>text-overflow</strong> - clip |ellipsis </li>
+                    <li><strong>text-shadow</strong> - none | &lt;length> {2,4} &lt;color></li>
+                    <li><strong>text-transform</strong> - uppercase | lowercase | capitalize |none</li>
+                    
+                    <li><strong>line-height</strong> - &lt;length> | &lt;percentage> | &lt;number | normal | none 	</li>
+                    <li><strong>letter-spacing</strong> -  normal | &lt;length> | &lt;percentage> </li>
+                    <li><strong>vertical-align</strong> - baseline | sub | super | top |text-top| middle | bottom | text-bottom | &lt;percentage> | &lt;length></li>
+                    
+                </ul>
+            </p>
+    	</div>
+    	<div data-role="collapsible">
+    		<h3>Values and Units</h3>
+            
+            <h4>Length Values</h4>
+            <h5>Absolute Length Units</h5>
+            <ul>
+            <li>Inches (in)</li>
+            <li>Centimeters (cm)</li>
+            <li>Millimeters (mm)</li>
+            <li>Points (pt)</li>
+            <li>Picas (pc)</li>
+            </ul>
+            
+            <h5>Relative Length Units</h5>
+            <ul>
+            	<li>Em-height (em)</li>
+                <li>Root element em-height (rem)</li>
+                <li>X-height (ex)</li>
+                <li>Zero width (ch)</li>
+                <li>Pixels (px)</li>
+                <li>Viewport width unit (vw)</li>
+                <li>Viewport height unit (vh)</li>
+                <li>Viewport minimum unit (vm)</li>
+            </ul>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <h4>Color Values</h4>
+                	<ul>
+                    <li><strong>#RRGGBB</strong> - e.g. #ffff00</li>
+                    <li><strong>#RGB</strong> - e.g. #ff0</li>
+                    <li><strong>rgb(rrr,ggg,bbb)</strong> - e.g. rgb(255,255,0)</li>
+                    <li><strong>rgba(rrr,ggg,bbb,a.aa)</strong> - e.g. rgba(255,255,255,0.5)</li>
+                    <li><strong>rgba(rrr.rr%,ggg.gg%,bbb.bb%,a.aa)</strong> - e.g. rgba(100%,100%,0%,0.5)</li>
+                    <li><strong>hsla(hhh.hh,sss.ss%,lll.ll%,a.aa)</strong> - e.g. hsla(60,100%,50%,0.5)</li>
+                    <li><strong>&lt;keyword></strong> - e.g. yellow</li>
+                    </ul>
+     		</div>
+    </div>
+    
+    
+    
+    <footer data-role="footer"><a href="../css-overview" data-role="button" data-theme="a">Home</a></footer>
+</div>
+
+<div data-role="page" id="layout">
+	<header data-role="header">
+    <a href="../css-overview" data-role="button" data-theme="a">Home</a>
+    <h2>Layout</h2></header>
+	<div data-role="content">
+    	<div data-role="collapsible">
+    		<h3>Boxes and display</h3>
+            <p>There are two primary layouts defined by CSS - block-level and inline-level. 
+    		<p>For the block-level layout, see <a href="box-model.html" data-ajax="false">this representation</a> of the CSS box model. </p>
+            
+            <p>The following rules apply to <strong>inline box</strong>: For the properties <strong>left</strong>, <strong>right</strong>, <strong>top</strong>, <strong>bottom</strong>, <strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, and <strong>margin-bottom</strong>, any value of <em>auto</em> is converted to 0 (zero). <strong>width</strong> and <strong>height</strong> do not apply to nonreplaced inline boxes.</p>
+            <p>For replaced inline boxes (images, input elements, etc.), there are set of more obscure rules, defined here: <a href="http://www.w3.org/TR/css3-box/#inline-replaced" data-ajax="false">http://www.w3.org/TR/css3-box/#inline-replaced</a>. 
+    	</div>
+    	<div data-role="collapsible">
+    		<h3>Floating</h3>
+    		<p>
+            	<ul>
+                	<li><strong>float</strong> - left | right |none </li>
+                    <li><strong>clear</strong> - left | right | both |none</li>
+                </ul>
+            </p>
+    	</div>
+    	<div data-role="collapsible">
+    		<h3>Positioning</h3>
+    		<p>
+            	The types of positioning are static, relative, absolute and fixed. 
+            </p>
+            <h4>Static positioning</h4>
+            This is the default - the element box is generated as normal and is not taken out of the document flow. 
+            <h4>Relative positioning</h4>
+            The element preserves the shape and space it would have occupied if it were not positioned, but it is offset by some distance. 
+            <h4>Absolute positioning</h4>
+            The element is taken out of the flow and positioned with respect to its containing block. The space it would occupy if not positioned is closed up. 
+            <h4>Fixed positioning</h4>
+            The element is absolutely positioned with respect to the viewport. When scrolling, it remains fixed. 
+            
+            <ul>
+            	<li><strong>position</strong> - static | relative | absolute | fixed</li>
+                <li><strong>left</strong> - &lt;length> | &lt;percentage> | auto</li>
+                <li><strong>right</strong> - &lt;length> | &lt;percentage> | auto</li>
+                <li><strong>top</strong> - &lt;length> | &lt;percentage> | auto</li>
+                <li><strong>bottom</strong> - &lt;length> | &lt;percentage> | auto</li>
+            </ul>
+    	</div>
+    </div>
+    <footer data-role="footer"><a href="../css-overview" data-role="button" data-theme="a">Home</a></footer>
+</div>
+<div data-role="page" id="resources">
+	<header data-role="header">
+    <a href="../css-overview" data-role="button" data-theme="a">Home</a>
+    <h2>Resources</h2></header>
+	<div data-role="content">
+		<ul data-role="listview">
+		<li><a rel="external" href="http://www.w3.org/Style/CSS/">CSS Home Page - W3C</a></li>
+		<li><a href="http://www.w3schools.com/css/default.asp" rel="external">CSS Tutorial - W3Schools</a></li>
+		<li><a href="http://meyerweb.com/eric/css/" rel="external">Eric Meyer's site</a></li>
+		<li><a href="http://caniuse.com/">CanIUse.com</a></li>
+		<li><a href="http://www.quirksmode.org/css/contents.html">Quirksmode.org - CSS Compatibility Charts</a></li>
+		<li><a rel="external" href="http://www.amazon.com/CSS-Definitive-Eric-A-Meyer/dp/0596527330/ref=sr_1_1?ie=UTF8&qid=1345579177&sr=8-1&keywords=CSS+the+definitive+guide">CSS: The Definitve Guide</a></li>
+		<li><a href="http://www.amazon.com/CSS-Pocket-Reference-OReilly/dp/1449399037/ref=sr_1_3?ie=UTF8&qid=1345579177&sr=8-3" rel="external">CSS Pocket Reference</a></li>
+		</ul>
+		
+		
+		
+		
+		
+	</div>
+</div>
+
+
+<script src="../js/jquery-1.7.1.min.js"></script>
+<script src="../js/jquery.mobile-1.1.0.min.js"></script>
+
+<script>
+$(document).ready(
+		function(){
+	$(".view-rule").click(function(e){
+		$(this).next('.codeview').toggle();
+	});
+});
+</script>
+</body>
+</html>
+
